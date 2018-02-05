@@ -28,4 +28,3 @@ spec:
         nfs:
           server: 192.168.159.129
           path: "/www"
-
