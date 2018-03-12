@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cpp-nodemgrsvr
+  labels:
+    app: cpp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpp
+  template:
+    metadata:
+      labels:
+        app: cpp
+    spec:
+      containers:
+      - name: nginx
+        image: 172.16.251.116:5000/nodemgrsvr:v1.0
+        ports:
+        - containerPort: 3000
+        - containerPort: 7601
+
+
+

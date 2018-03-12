@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: php-56
+  labels:
+    app: php-56
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-56
+  template:
+    metadata:
+      labels:
+        app: php-56
+    spec:
+      containers:
+      - name: php-56
+        image: 172.16.251.116:5000/php5.6:v1.0
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+        - mountPath: /www
+          readOnly: false
+          name: php-56
+        - mountPath: /etc/php-fpm.d
+          readOnly: false
+          name: php-56-cfg
+      volumes:
+      - name: php-56
+        nfs:
+          server: 172.16.251.120
+          path: "/usr/local/k8s/mount_path/www"
+      - name: php-56-cfg
+        nfs:
+          server: 172.16.251.120
+          path: "/usr/local/k8s/mount_path/php_conf"

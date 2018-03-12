@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: 172.16.251.116:5000/nginx:v1.0
+        ports:
+        - containerPort: 80
+        - containerPort: 8081
+        volumeMounts:
+        - mountPath: /www
+          readOnly: false
+          name: nginx
+        - mountPath: /etc/nginx
+          readOnly: false
+          name: nginx-cfg
+      volumes:
+      - name: nginx
+        nfs:
+          server: 172.16.251.120
+          path: "/usr/local/k8s/mount_path/www"
+      - name: nginx-cfg
+        configMap:
+          name: nginx
+	  namespace: test-env

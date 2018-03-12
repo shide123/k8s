@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata: 
+  name: web-nginx
+spec: 
+  replicas: 3
+  serviceName: nginx
+  template: 
+    metadata: 
+      labels: 
+        app: nginx
+    spec: 
+      containers: 
+        - 
+          image: "172.16.251.116:5000/nginx:v1.0"
+          name: nginx
+          ports: 
+            - 
+              containerPort: 80
+            - 
+              containerPort: 8081
+          volumeMounts: 
+            - 
+              mountPath: /www
+              name: nginx
+              readOnly: false
+      terminationGracePeriodSeconds: 10
+  volumeClaimTemplates: 
+    - 
+      metadata: 
+        annotations: 
+          volume.beta.kubernetes.io/storage-class: anything
+        name: nginx
+      spec: 
+        accessModes: 
+          - ReadWriteOnce
+        resources: 
+          requests: 
+            storage: 1Gi

@@ -1,0 +1,73 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  name: cpp
+spec: 
+  clusterIP: "10.100.10.3"
+  externalIPs: 
+    - "219.135.129.101"
+  ports: 
+    - 
+      name: nodemgrsvr-connector
+      port: 3000
+      targetPort: 3000
+    - 
+      name: nodemgrsvr
+      port: 7601
+      targetPort: 7601
+    - 
+      name: webgate
+      port: 6263
+      targetPort: 6263
+    - 
+      name: gateway
+      port: 6150
+      targetPort: 6150
+    - 
+      name: usermgrsvr-port
+      port: 6030
+      targetPort: 6030
+    - 
+      name: usermgrsvr-rpc
+      port: 16030
+      targetPort: 16030
+    - 
+      name: tppushsvr-port
+      port: 6090
+      targetPort: 6090
+    - 
+      name: tppushsvr-rpc
+      port: 16090
+      targetPort: 16090
+    - 
+      name: pushmsgsvr-port
+      port: 6130
+      targetPort: 6130
+    - 
+      name: pushmsgsvr-rpc
+      port: 16130
+      targetPort: 16130
+    - 
+      name: consumesvr-port
+      port: 6070
+      targetPort: 6070
+    - 
+      name: consumesvr-rpc
+      port: 16070
+      targetPort: 16070
+    - 
+      name: chatsvr-port
+      port: 6050
+      targetPort: 6050
+    - 
+      name: chatsvr-rpc
+      port: 16050
+      targetPort: 16050
+    - 
+      name: logonsvr-port
+      port: 6010
+      targetPort: 6010
+  selector: 
+    app: cpp
+
