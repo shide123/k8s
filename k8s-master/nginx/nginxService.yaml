@@ -5,7 +5,7 @@ metadata:
 spec:
   clusterIP: 10.100.10.2
   externalIPs:
-    - "219.135.129.101"
+    - "219.999.999.999"
   ports:
     -
       name: nginx
