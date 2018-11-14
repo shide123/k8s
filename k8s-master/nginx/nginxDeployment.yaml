@@ -35,4 +35,4 @@ spec:
       - name: nginx-cfg
         configMap:
           name: nginx
-	  namespace: test-env
+	 namespace: test-env
